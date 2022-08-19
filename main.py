@@ -36,7 +36,7 @@ def main():
                 #main Tab
                 with dpg.tab_bar(reorderable=True, callback=lambda s, d: win._set_current_active_storyboard(d)) as storyboards:
                     dpg.add_tab_button(label="+", callback=lambda: win.storyboard(storyboards), trailing=True)
-                    win.storyboard(storyboards)
+                    win._set_current_active_storyboard(win.storyboard(storyboards))
                 pass
         pass
 
