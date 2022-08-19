@@ -2,14 +2,14 @@
 
 import sys
 import dearpygui.dearpygui as dpg
-from windows import storyboard
+import windows as win
 
 
 #main loop
 def main():
     #add viewport
     dpg.create_context()
-    main_vp = dpg.create_viewport(title="storyflow")
+    dpg.create_viewport(title="storyflow")
     dpg.show_viewport()
     dpg.setup_dearpygui()
 
@@ -23,20 +23,20 @@ def main():
             dpg.add_table_column(width_stretch=True)
 
             with dpg.table_row():
-                with dpg.tab_bar() as nodes:
+                with dpg.tab_bar():
                     with dpg.tab(label="Favorites"):
                         dpg.add_text("hey")
                         pass
                     
                     with dpg.tab(label="Nodes"):
-                        dpg.add_text("hallo")
+                        #todo: add Drag and Drop in the future
+                        dpg.add_button(label="Story Node", callback=win.create_standard_node)
                         pass
 
                 #main Tab
-                with dpg.tab_bar() as storyboards:
-                    dpg.add_tab_button(label="+", callback=lambda: storyboard(storyboards))
-                    storyboard(storyboards)
-
+                with dpg.tab_bar(reorderable=True, callback=lambda s, d: win._set_current_active_storyboard(d)) as storyboards:
+                    dpg.add_tab_button(label="+", callback=lambda: win.storyboard(storyboards), trailing=True)
+                    win.storyboard(storyboards)
                 pass
         pass
 
@@ -48,7 +48,7 @@ def main():
     dpg.destroy_context()
 
     sys.exit()
-    pass
+
 
 
 main()
