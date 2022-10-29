@@ -42,13 +42,14 @@ def main():
 
     dpg.set_primary_window(window=stories, value=True)
 
-    dpg.show_imgui_demo()
-
     dpg.start_dearpygui()
     dpg.destroy_context()
 
     sys.exit()
 
 
-
-main()
+try:
+    main()
+except Exception as e:
+    print(e)
+    sys.exit()

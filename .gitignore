@@ -1,3 +1,5 @@
 test.py
 __pycache__
 storyflow-venv
+.vscode
+tet.py
